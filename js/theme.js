@@ -9,7 +9,7 @@
 
   function apply(name) {
     root.setAttribute("data-theme", name);
-    if (btn) btn.textContent = "theme: " + name;
+    if (btn) btn.setAttribute("aria-label", name === "dark" ? "Switch to light theme" : "Switch to dark theme");
   }
 
   var saved = null;
