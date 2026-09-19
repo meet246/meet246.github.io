@@ -34,7 +34,7 @@
     <p>Fires on Windows Event 7045 (new service) when the binary path sits directly in the Windows root. My first version matched the service name <code>PSEXESVC</code> and missed every real Impacket run, because Impacket randomizes the name. Wazuh's default rule still fired because it matched the path.</p>
 <pre>&lt;field name="win.system.eventID"&gt;^7045$&lt;/field&gt;
 &lt;field name="win.eventdata.imagePath" type="pcre2"&gt;
-  (?i)^%systemroot%\\[^\\]+\.exe$
+  (?i)^%systemroot%\\\\[^\\\\]+\.exe$
 &lt;/field&gt;</pre>
     <p><strong>Why it matters:</strong> A rule tied to an indicator (a name) is defeated by changing one variable. A rule tied to behavior the technique forces on the attacker survives that. Defender quarantined the payload, but the 7045 event was logged first, so Wazuh still alerted. Prevention and detection worked as independent layers.</p>
 
