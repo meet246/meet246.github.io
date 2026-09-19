@@ -1,9 +1,9 @@
-// Theme switch: cycles data-theme on <html> through dark -> blue -> light.
+// Theme switch: cycles data-theme on <html> through dark -> light.
 // The CSS variables in style.css do the actual restyling.
 // localStorage remembers the choice; try/catch because it can be blocked
 // (private windows), and the site should still work if it is.
 (function () {
-  var themes = ["dark", "blue", "light"];
+  var themes = ["dark", "light"];
   var root = document.documentElement;
   var btn = document.getElementById("theme-toggle");
 
