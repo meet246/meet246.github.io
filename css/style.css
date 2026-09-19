@@ -110,11 +110,6 @@ ul.links { padding-left: 20px; }
 .card h3 { margin: 0 0 6px; font-size: 1rem; color: var(--accent-text); }
 .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
-.badges { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; list-style: none; }
-.badges li {
-  border: 1px solid var(--accent-text); color: var(--accent-text);
-  border-radius: 6px; padding: 6px 14px; font-family: var(--font-mono);
-}
 
 footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; padding: 20px 0; }
 
@@ -171,3 +166,12 @@ figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 6px; font-fami
 .hero-links { margin-top: 24px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 .hero-links .link-btn { padding: 14px 16px; gap: 12px; }
 .hero-links .link-btn .ico { width: 28px; height: 28px; }
+
+/* Certification cards */
+.certs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.cert {
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+  border-radius: 8px; padding: 12px 16px; max-width: none;
+}
+.cert span { display: block; color: var(--muted); font-size: 0.8rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; }
+.cert strong { display: block; color: var(--text); font-size: 1.05rem; margin-top: 2px; }
