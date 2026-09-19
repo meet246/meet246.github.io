@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meet246.github.io/sitemap.xml
