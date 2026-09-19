@@ -148,8 +148,6 @@ figure img { display: block; width: 100%; height: auto; border: 1px solid var(--
 figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 6px; font-family: var(--font-mono); }
 @media (min-width: 900px) { figure.narrow { max-width: 620px; } }
 
-.badges li::before { content: "\2713\00a0 "; }
-
 /* Contact link buttons */
 .contact-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px; }
 .link-btn {
