@@ -71,8 +71,18 @@ header .wrap {
 .brand { font-family: var(--font-mono); font-weight: 700; color: var(--text); text-decoration: none; }
 .brand::before { content: "> "; color: var(--accent-text); }
 nav { display: flex; flex-wrap: wrap; gap: 0 10px; align-items: center; }
-nav a { color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; padding: 10px 8px; }
-nav a:hover, nav a[aria-current="page"] { color: var(--accent-text); }
+nav a { position: relative; color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; padding: 10px 8px; }
+nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--accent-text); }
+/* Glowing underline: sits a few px below the text, grows in from the center on hover/focus and stays on the current page */
+nav a::after {
+  content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 2px;
+  border-radius: 2px; background: var(--accent-text);
+  box-shadow: 0 0 6px var(--accent-text), 0 0 14px var(--accent-text);
+  transform: scaleX(0); transform-origin: center; opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+nav a:hover::after, nav a:focus-visible::after, nav a[aria-current="page"]::after { transform: scaleX(1); opacity: 1; }
+@media (prefers-reduced-motion: reduce) { nav a::after { transition: none; } }
 #theme-toggle {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; margin-left: 6px;
