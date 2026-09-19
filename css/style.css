@@ -96,17 +96,6 @@ pre {
 }
 ul.links { padding-left: 20px; }
 
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 11px 20px; border-radius: 8px;
-  background: var(--accent); color: var(--on-accent);
-  border: 1px solid var(--accent-text);
-  font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
-  text-decoration: none; line-height: 1.2;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-}
-.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); }
 .ico { width: 18px; height: 18px; flex: none; }
 
 /* Highlights strip: 3 cards, stacks to 1 column on phones */
@@ -144,14 +133,6 @@ footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.
   .card { transition: none; }
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-.actions .btn { margin-top: 0; }
-.btn-ghost {
-  background: transparent; color: var(--accent-text);
-  border: 1px solid var(--accent-text);
-}
-.btn-ghost { box-shadow: none; }
-.btn-ghost:hover { background: var(--accent); color: var(--on-accent); }
 
 
 
@@ -186,3 +167,5 @@ figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 6px; font-fami
 .link-btn .ico { width: 34px; height: 34px; color: var(--accent-text); }
 .link-btn strong { display: block; font-size: 1.05rem; }
 .link-btn span { color: var(--muted); font-size: 0.9rem; word-break: break-all; }
+.contact-grid.one { grid-template-columns: minmax(240px, 320px); }
+.hero-links { margin-top: 24px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
