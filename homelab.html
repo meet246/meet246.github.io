@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Homelab | Jack Hessefort</title>
   <meta name="description" content="Homelab writeups: Active Directory enterprise lab, Wazuh SIEM detection rules, and Kali Linux attack simulations.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Homelab | Jack Hessefort">
+  <meta property="og:description" content="Homelab writeups: Active Directory enterprise lab, Wazuh SIEM detection rules, and Kali Linux attack simulations.">
+  <meta property="og:image" content="https://meet246.github.io/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,26 +32,32 @@
     <p class="lead">Each project: what I built, and why it matters to an IT or security team.</p>
 
     <!-- Each project follows the same shape so new ones are copy-paste. -->
-    <h2>SOC Detection Lab: Wazuh + Sysmon + Kali</h2>
+    <h2 id="detection-lab">SOC Detection Lab: Wazuh + Sysmon + Kali</h2>
     <p class="meta"><span class="tag">Wazuh 4.14</span><span class="tag">Sysmon</span><span class="tag">Impacket</span><span class="tag">MITRE ATT&amp;CK</span></p>
     <p><strong>What I built:</strong> A self-hosted Wazuh SIEM (Ubuntu Server) layered on my Active Directory lab, with agents and Sysmon (SwiftOnSecurity config) on the domain controller and a Windows 11 client. I wrote custom detection rules and validated them against attacks launched from a Kali VM on an isolated network.</p>
+    <figure class="narrow"><img src="assets/img/agents.png" alt="Wazuh Endpoints dashboard with DC01 and CLIENT01 both reporting active" loading="lazy"><figcaption>Both lab endpoints reporting to the Wazuh manager.</figcaption></figure>
 
-    <h3>Rule 100003: PsExec-style lateral movement (T1021.002, T1569.002)</h3>
+    <h3 id="rule-100003">Rule 100003: PsExec-style lateral movement (T1021.002, T1569.002)</h3>
     <p>Fires on Windows Event 7045 (new service) when the binary path sits directly in the Windows root. My first version matched the service name <code>PSEXESVC</code> and missed every real Impacket run, because Impacket randomizes the name. Wazuh's default rule still fired because it matched the path.</p>
 <pre>&lt;field name="win.system.eventID"&gt;^7045$&lt;/field&gt;
 &lt;field name="win.eventdata.imagePath" type="pcre2"&gt;
   (?i)^%systemroot%\\\\[^\\\\]+\.exe$
 &lt;/field&gt;</pre>
+    <figure><img src="assets/img/rule_3_confirm.png" alt="Wazuh Threat Hunting events: custom rule 100003 at level 14 and default rule 92650 at level 12 both firing on CLIENT01" loading="lazy"><figcaption>Custom rule 100003 (level 14) firing alongside Wazuh's default rule 92650 on CLIENT01.</figcaption></figure>
+    <figure class="narrow"><img src="assets/img/rule_3_details.png" alt="Wazuh alert document for rule 100003 showing MITRE ATT&amp;CK IDs T1021.002 and T1569.002" loading="lazy"><figcaption>Alert detail with MITRE ATT&amp;CK tags T1021.002 and T1569.002.</figcaption></figure>
     <p><strong>Why it matters:</strong> A rule tied to an indicator (a name) is defeated by changing one variable. A rule tied to behavior the technique forces on the attacker survives that. Defender quarantined the payload, but the 7045 event was logged first, so Wazuh still alerted. Prevention and detection worked as independent layers.</p>
 
     <h3>Rule 100002: Office app spawning a shell (T1204.002, T1059.001)</h3>
     <p>Fires on Sysmon process creation where Word, Excel or Outlook is the parent and PowerShell or cmd is the child, the classic malicious-macro pattern. I tested it without an Office license by renaming <code>cmd.exe</code> to <code>winword.exe</code>, since Sysmon tracks the path of the running image.</p>
+    <figure><img src="assets/img/rule_2_confirm.png" alt="Wazuh Threat Hunting showing rule 100002 firing once at level 12 on CLIENT01" loading="lazy"><figcaption>Rule 100002 firing when the renamed winword.exe spawned PowerShell.</figcaption></figure>
 
     <p><a href="https://github.com/meet246/SOC-Detection-Lab">Full writeup and screenshots on GitHub &rarr;</a></p>
 
-    <h2>Enterprise Active Directory Lab (VMware)</h2>
+    <h2 id="ad-lab">Enterprise Active Directory Lab (VMware)</h2>
     <p class="meta"><span class="tag">Windows Server 2022</span><span class="tag">PowerShell</span><span class="tag">Group Policy</span><span class="tag">VMware</span></p>
     <p><strong>What I built:</strong> A domain with AD DS, DNS and DHCP, a domain-joined Windows 11 client, and OUs and security groups. I automated user provisioning from a CSV with PowerShell (<code>New-ADUser</code>, <code>New-ADGroup</code>, <code>Add-ADGroupMember</code>).</p>
+    <figure class="narrow"><img src="assets/img/ou-ps.png" alt="PowerShell ISE output creating HR and ITSupport OUs, security groups, and provisioning users" loading="lazy"><figcaption>Provisioning script creating OUs, groups and users.</figcaption></figure>
+    <figure class="narrow"><img src="assets/img/AD-Users.png" alt="Active Directory Users and Computers showing the corp.local OU structure" loading="lazy"><figcaption>The resulting OU structure in Active Directory Users and Computers.</figcaption></figure>
     <p><strong>Why it matters:</strong> I hardened it with Group Policy: LLMNR and NetBIOS disabled, firewall logging, and advanced audit policies for Kerberos, logon and process creation. That gives a SIEM the telemetry a SOC analyst depends on.</p>
     <p><a href="https://github.com/meet246/Active-Directory-Enterprise-Lab">Full writeup on GitHub &rarr;</a></p>
 

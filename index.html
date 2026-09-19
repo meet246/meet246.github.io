@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jack Hessefort | IT, SOC &amp; IAM Portfolio</title>
   <meta name="description" content="Jack Hessefort: cybersecurity graduate targeting IT support, SOC analyst and identity and access management (IAM) roles. Active Directory lab, Wazuh SIEM detection rules, and Kali attack simulations.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jack Hessefort | IT, SOC &amp; IAM Portfolio">
+  <meta property="og:description" content="Jack Hessefort: cybersecurity graduate targeting IT support, SOC analyst and identity and access management (IAM) roles. Active Directory lab, Wazuh SIEM detection rules, and Kali attack simulations.">
+  <meta property="og:image" content="https://meet246.github.io/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,24 +28,54 @@
   </header>
 
   <main class="wrap">
-    <h1>Jack Hessefort</h1>
-    <p class="lead">Cybersecurity graduate (USF) targeting IT support, SOC analyst, and identity &amp; access management roles. I build and break a real Active Directory and Wazuh lab to prove the skills.</p>
-    <a class="btn" href="assets/resume.pdf">Download resume</a>
+    <section class="hero">
+      <div>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Open to IT, SOC &amp; IAM roles &middot; Tampa, FL</p>
+        <h1>Jack Hessefort<span class="cursor" aria-hidden="true">_</span></h1>
+        <p class="lead">Cybersecurity graduate (USF) targeting IT support, SOC analyst, and identity &amp; access management roles. I build and break a real Active Directory and Wazuh lab to prove the skills.</p>
+        <div class="actions">
+          <a class="btn" href="assets/resume.pdf">Download resume</a>
+          <a class="btn btn-ghost" href="https://github.com/meet246">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/jackhessefort/">LinkedIn</a>
+          <a class="btn btn-ghost" href="mailto:jackmhess@gmail.com">Email</a>
+        </div>
+      </div>
+      <pre class="term" aria-label="Terminal-style summary"><span class="p">$</span> whoami
+<span class="o">jack.hessefort</span>
+<span class="p">$</span> cat focus.txt
+<span class="o">IT support | SOC analyst | IAM</span>
+<span class="p">$</span> ls labs/
+<span class="o">ad-enterprise  wazuh-siem  kali-attacks</span>
+<span class="p">$</span> </pre>
+    </section>
+
+    <ul class="stats" aria-label="At a glance">
+      <li><strong>3.93</strong><span>GPA, summa cum laude</span></li>
+      <li><strong>4</strong><span>certifications</span></li>
+      <li><strong>2</strong><span>custom Wazuh detection rules</span></li>
+      <li><strong>6</strong><span>public lab repos</span></li>
+    </ul>
 
     <h2>Highlights</h2>
     <div class="highlights">
-      <article class="card">
+      <a class="card" href="homelab.html#rule-100003">
+        <img src="assets/img/rule_3_confirm.png" alt="Wazuh Threat Hunting view showing custom rule 100003 firing on CLIENT01" loading="lazy" style="object-position: left bottom;">
         <h3>Behavioral PsExec Detection</h3>
         <p>My first Wazuh rule keyed on a service name and missed real Impacket runs. I rewrote it to match the binary path the technique forces, and it now catches any variant.</p>
-      </article>
-      <article class="card">
+        <div class="tags"><span class="tag-sm">Wazuh</span><span class="tag-sm">MITRE ATT&amp;CK</span><span class="tag-sm">Impacket</span></div>
+      </a>
+      <a class="card" href="homelab.html#detection-lab">
+        <img src="assets/img/agents.png" alt="Wazuh dashboard showing DC01 and CLIENT01 agents active" loading="lazy">
         <h3>Wazuh SIEM on an AD Lab</h3>
         <p>Self-hosted Wazuh with Sysmon telemetry, custom rules mapped to MITRE ATT&amp;CK, tested with Kali attacks.</p>
-      </article>
-      <article class="card">
+        <div class="tags"><span class="tag-sm">Sysmon</span><span class="tag-sm">Ubuntu</span><span class="tag-sm">Kali</span></div>
+      </a>
+      <a class="card" href="homelab.html#ad-lab">
+        <img src="assets/img/ou-ps.png" alt="PowerShell script creating OUs, security groups and users in Active Directory" loading="lazy">
         <h3>Enterprise AD Lab</h3>
         <p>Windows Server 2022 domain with PowerShell user provisioning, security groups, least privilege, and Group Policy hardening: the identity side of IT.</p>
-      </article>
+        <div class="tags"><span class="tag-sm">Active Directory</span><span class="tag-sm">PowerShell</span><span class="tag-sm">GPO</span></div>
+      </a>
     </div>
     <p><a href="homelab.html">See all homelab writeups &rarr;</a></p>
   </main>
