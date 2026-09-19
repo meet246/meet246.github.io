@@ -85,7 +85,7 @@ nav a:hover, nav a[aria-current="page"] { color: var(--accent-text); }
 :root[data-theme="light"] #theme-toggle .moon { display: block; }
 
 /* ---------- Content ---------- */
-main { padding: 40px 16px 64px; flex: 1 0 auto; width: 100%; }
+main.wrap { padding: 40px 16px 64px; flex: 1 0 auto; width: 100%; }
 h1, h2, h3 { font-family: var(--font-mono); line-height: 1.25; }
 h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 12px; letter-spacing: -0.02em; }
 h2 { font-size: 1.4rem; margin: 48px 0 14px; }
